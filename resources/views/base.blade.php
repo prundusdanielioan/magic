@@ -33,6 +33,16 @@
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/rezervari">Rezervari</a></li>
             <li><a href="#">Galerie foto/video</a></li>
+            @auth
+                <li>Welcome, {{ Auth::user()->name }}!</li>
+                <li><a href="{{ route('logout') }}">Logout</a></li>
+
+            @endauth
+            @guest
+                <li><a href="{{ route('login') }}">Login</a></li>
+
+            @endguest
         </ul>
+
     </div>
 </nav>

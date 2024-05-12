@@ -861,7 +861,7 @@
 </head>
 <style>
     .image-bg {
-        background-image: url({{ asset('storage/images/reclama2.jpg')}});
+        {{--background-image: url({{ asset('storage/images/reclama2.jpg')}});--}}
         background-size: cover;
         background-position: center;
         height: 100vh;

@@ -121,11 +121,6 @@
             text-transform: none
         }
 
-        [type=button], [type=reset], [type=submit], button {
-            -webkit-appearance: button;
-            background-color: transparent;
-            background-image: none
-        }
 
         :-moz-focusring {
             outline: auto

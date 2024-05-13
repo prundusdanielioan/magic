@@ -1,7 +1,14 @@
-/* Fonts */ @import url('https://fonts.bunny.net/css?family=Nunito'); /* Variables */ @import 'variables'; /* Bootstrap */ @import 'bootstrap/scss/bootstrap'; @import 'bootstrap-icons/font/bootstrap-icons.css';
+// Bootstrap
+
+/* Fonts */
+@import url('https://fonts.bunny.net/css?family=Nunito');
+/* Variables */
+@import 'variables';
+/* Bootstrap */
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
 .lightbox-gallery {
-    background-image: linear-gradient(#4A148C, #E53935);
-    background-repeat: no-repeat;
     color: #000;
     overflow-x: hidden
 }
@@ -42,3 +49,5 @@
 .lightbox-gallery .item {
     padding-bottom: 30px
 }
+
+@import 'bootstrap/scss/bootstrap';

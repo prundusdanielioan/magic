@@ -1,3 +1,3 @@
 @include('base')
 <livewire:whatsapp/>
-@include('footer')
+@include('partial.footer')

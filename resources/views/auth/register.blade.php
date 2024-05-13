@@ -20,5 +20,5 @@
         <button type="submit" class="btn btn-dark btn-block">Inregistrare</button>
     </div>
 </form>
-@include('footer')
+@include('partial.footer')
 

@@ -6,14 +6,14 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item active me-4">
                 <a class="nav-link" href="/">
-                    <i class="fa fa-home"></i>
+                    <i class="fa fa-home "></i>
                     Home
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item me-4">
                 <a class="nav-link" href="{{ route('rezervari') }}">
                     <i class="fa fa-envelope-o">
                         <span class="badge badge-danger"></span>
@@ -22,7 +22,7 @@
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item me-4">
                 <a class="nav-link" href="{{ route('gallery') }}">
                     <i class="fa fa-file-image-o">
                         <span class="badge badge-danger"></span>

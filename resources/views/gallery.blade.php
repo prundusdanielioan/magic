@@ -1,10 +1,9 @@
 @include('base')
 <div class="card">
     @include('partial/gallery')
-    <div class="card-body">
-        <h5 class="card-title">Galerie foto</h5>
-        <p class="card-text">Cateva poze din interiorul spatiului de joaca</p>
-        <a href="{{ route('rezervari') }}" class="btn btn-primary">Fa o rezervare</a>
+    <div class="card-body d-flex flex-column align-items-start">
+        <p class="card-text mt-auto align-self-center">Cateva poze din interiorul spatiului de joaca</p>
+        <a href="{{ route('rezervari') }}" class="btn btn-primary mt-auto align-self-center">Fa o rezervare</a>
     </div>
 </div>
 

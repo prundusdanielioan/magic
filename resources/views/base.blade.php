@@ -1,4 +1,3 @@
 @include('partial/header')
-<div class="container ">
-    @include('partial/navigation')
+@include('partial/navigation')
 

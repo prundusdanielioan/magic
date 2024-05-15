@@ -1,4 +1,5 @@
 @include('base')
-<livewire:whatsapp/>
+{{--<livewire:whatsapp/>--}}
+@include('partial/calendar')
 
 @include('partial.footer')

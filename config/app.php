@@ -98,6 +98,10 @@ return [
     'cipher' => 'AES-256-CBC',
 
     'key' => env('APP_KEY'),
+    'twilio_sid' => env('TWILIO_SID'),
+    'twilio_auth_token' => env('TWILIO_AUTH_TOKEN'),
+    'twilio_whatsapp_number' => env('TWILIO_WHATSAPP_NUMBER'),
+
 
     'previous_keys' => [
         ...array_filter(

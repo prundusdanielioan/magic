@@ -1,4 +1,6 @@
 @include('base')
+<livewire:whatsapp/>
+
 <div class="card">
     @include('partial/gallery')
     <div class="card-body d-flex flex-column align-items-start">

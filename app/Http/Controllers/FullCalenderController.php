@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class FullCalenderController extends Controller
 {
@@ -48,7 +49,18 @@ class FullCalenderController extends Controller
                     'start' => $dateTime->format('Y-m-d H:i:s'),
                     'end' => $dateTime->format('Y-m-d H:i:s'),
                 ]);
-
+                $response = Http::withBasicAuth('7f10adec', 'D8ivM2bR1Szc4g9l')
+                    ->withHeaders([
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json'
+                    ])
+                    ->post('https://messages-sandbox.nexmo.com/v1/messages', [
+                        'from' => '14157386102',
+                        'to' => '40722562596',
+                        'message_type' => 'text',
+                        'text' => 'Avem o rezervare',
+                        'channel' => 'whatsapp'
+                    ]);
                 return response()->json($event);
 
             case 'update':

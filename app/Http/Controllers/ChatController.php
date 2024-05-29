@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 #[AllowDynamicProperties] class ChatController extends Controller
 {
-    protected $openAIKey;
 
     public function __construct()
     {
@@ -17,7 +16,12 @@ use Illuminate\Http\Request;
 
     public function chat(Request $request, OpenAIAsistant $openAIAsistant)
     {
-        return $openAIAsistant->getRuns($this->threadId);
-
+        $message = 'Cand am lucrat la Quest';
+        //        return $openAIAsistant->getRuns($this->threadId);
+//          return $openAIAsistant->getMessages($this->threadId);
+//          return $openAIAsistant->addMessage($this->threadId);
+//            return $openAIAsistant->runRuns($this->threadId);
+//            return $openAIAsistant->getRun($this->threadId);
+        return $openAIAsistant->addMessageAndWaitForResponse($this->threadId, $message);
     }
 }

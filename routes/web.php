@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/form', function () {
-    return view('form');
+Route::get('/chat', function () {
+    return view('chat');
 });
 //Route::middleware(['auth'])->group(function () {
 //    Route::get('/rezervari', function () {

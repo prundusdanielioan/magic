@@ -30,6 +30,14 @@
                     Galerie
                 </a>
             </li>
+            <li class="nav-item me-4">
+                <a class="nav-link" href="{{ route('chat') }}">
+                    <i class="fa fa-file-image-o">
+                        <span class="badge badge-danger"></span>
+                    </i>
+                    Chat
+                </a>
+            </li>
 
         </ul>
     </div>

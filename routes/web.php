@@ -24,4 +24,4 @@ Route::get('/login', [CustomAuthController::class, 'index'])->name('login');;
 Route::post('/login', [CustomAuthController::class, 'customLogin']);
 Route::get('/logout', [CustomAuthController::class, 'signOut'])->name('logout');
 
-Route::post('/chat', [ChatController::class, 'chat'])->name('chat');
+Route::get('/chat', [ChatController::class, 'render'])->name('chat');

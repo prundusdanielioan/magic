@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li class="nav-item me-4">
-                <a class="nav-link" href="{{ route('chat') }}">
+                <a class="nav-link" href="">
                     <i class="fa fa-file-image-o">
                         <span class="badge badge-danger"></span>
                     </i>

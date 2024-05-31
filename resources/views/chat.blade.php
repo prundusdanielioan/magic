@@ -64,6 +64,36 @@
         $('#chat-content').append(htmlCode);
         $('#chat-content').scrollTop($('#chat-content')[0].scrollHeight);
         $('.publisher-input').val('')
+        callApi(message)
+
+    }
+
+    function callApi(message) {
+        if (message.trim() !== "") {
+            $.ajax({
+                url: '{{ route('chat') }}',
+                type: 'POST',
+                data: {
+                    message: message,
+                    _token: $('meta[name="csrf-token"]').attr('content') // Include CSRF token
+                },
+                success: function (response) {
+                    const htmlCode = `
+                        <div class="media media-chat media-chat-reverse">
+                            <div class="media-body">
+                                <p>${response.message}</p>
+
+                            </div>
+                        </div>
+                    `;
+                    $('#chat-content').append(htmlCode);
+                    $('#chat-content').scrollTop($('#chat-content')[0].scrollHeight);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
     }
 </script>
 @include('partial.footer')

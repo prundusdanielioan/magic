@@ -123,7 +123,7 @@ class OpenAIAsistant
             sleep(1);
         }
         //return response
-        return $this->getMessages($threadId);
+        return $this->getMessages($threadId)['content'][0]['text']['value'];
     }
 
     private function getResponseFor200Code(ResponseInterface $response, $showOnlyLatest = true)

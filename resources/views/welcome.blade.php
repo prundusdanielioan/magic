@@ -213,49 +213,50 @@
 
     <x-bladewind::timeline date="Jul 2022 - Current">
         <x-slot:content>
-            <a onclick="showModal('quest_global_modal')">Quest Global</a>
+            <button class="btn-xs btn-info" onclick="showModal('quest_global_modal')">Quest Global</button>
         </x-slot:content>
     </x-bladewind::timeline>
 
     <x-bladewind::timeline date="Jul 2021 - Jul 2022">
         <x-slot:content>
-            <a onclick="showModal('sc_arnia_srl_modal')">SC Arnia SRL</a>
+            <button class="btn-xs btn-info" onclick="showModal('sc_arnia_srl_modal')">SC Arnia SRL</button>
         </x-slot:content>
     </x-bladewind::timeline>
 
     <x-bladewind::timeline date="Jul 2020 - Jan 2021">
         <x-slot:content>
-            <a onclick="showModal('sc_oves_enterprize_srl_modal')">SC Oves Enterprize SRL</a>
+            <button class="btn-xs btn-info" onclick="showModal('sc_oves_enterprize_srl_modal')">SC Oves Enterprize SRL
+            </button>
         </x-slot:content>
     </x-bladewind::timeline>
 
     <x-bladewind::timeline date="Jul 2019 - Jul 2020">
         <x-slot:content>
-            <a onclick="showModal('techsquad_modal')">TechSquad</a>
+            <button class="btn-xs btn-info" onclick="showModal('techsquad_modal')">TechSquad</button>
         </x-slot:content>
     </x-bladewind::timeline>
     <x-bladewind::timeline date="Jul 2018 - Aug 2019">
         <x-slot:content>
-            <a onclick="showModal('resto_in_modal')">Resto-In</a>
+            <button class="btn-xs btn-info" onclick="showModal('resto_in_modal')">Resto-In</button>
         </x-slot:content>
     </x-bladewind::timeline>
 
 
     <x-bladewind::timeline date="Jul 2016 - Jul 2018">
         <x-slot:content>
-            <a onclick="showModal('intacct_modal')">Intacct</a>
+            <button class="btn-xs btn-info" onclick="showModal('intacct_modal')">Intacct</button>
         </x-slot:content>
     </x-bladewind::timeline>
 
     <x-bladewind::timeline date="Jun 2015 - Jul 2016">
         <x-slot:content>
-            <a onclick="showModal('coera_modal')">Coera</a>
+            <button class="btn-xs btn-info" onclick="showModal('coera_modal')">Coera</button>
         </x-slot:content>
     </x-bladewind::timeline>
 
     <x-bladewind::timeline date="Jan 2008 - Jan 2012">
         <x-slot:content>
-            <a onclick="showModal('tenaris_modal')">Tenaris</a>
+            <button class="btn-xs btn-info" onclick="showModal('tenaris_modal')">Tenaris</button>
         </x-slot:content>
     </x-bladewind::timeline>
 

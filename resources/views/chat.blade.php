@@ -79,7 +79,7 @@
                 },
                 success: function (response) {
                     const htmlCode = `
-                        <div class="media media-chat media-chat-reverse">
+                        <div class="media media-chat">
                             <div class="media-body">
                                 <p>${response.message}</p>
 

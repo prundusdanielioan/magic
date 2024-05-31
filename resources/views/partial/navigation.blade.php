@@ -9,25 +9,8 @@
             <li class="nav-item active me-4">
                 <a class="nav-link" href="/">
                     <i class="fa fa-home "></i>
-                    Home
+                    My Timeline
                     <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item me-4">
-                <a class="nav-link" href="{{ route('rezervari') }}">
-                    <i class="fa fa-envelope-o">
-                        <span class="badge badge-danger"></span>
-                    </i>
-                    Rezervari
-                </a>
-            </li>
-
-            <li class="nav-item me-4">
-                <a class="nav-link" href="{{ route('gallery') }}">
-                    <i class="fa fa-file-image-o">
-                        <span class="badge badge-danger"></span>
-                    </i>
-                    Galerie
                 </a>
             </li>
             <li class="nav-item me-4">
@@ -35,7 +18,7 @@
                     <i class="fa fa-file-image-o">
                         <span class="badge badge-danger"></span>
                     </i>
-                    Chat
+                    Talk with my CV
                 </a>
             </li>
 

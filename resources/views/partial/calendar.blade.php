@@ -47,14 +47,17 @@
     function checkRecord() {
         const recordNo = document.getElementById('recordNo').value;
         const saveButton = document.getElementById('save');
+        const updateButton = document.getElementById('update');
         const deleteButton = document.getElementById('delete');
 
         if (parseInt(recordNo) > 0) {
             saveButton.style.display = 'none';
             deleteButton.style.display = 'inline-block';
+            updateButton.style.display = 'inline-block';
         } else {
             saveButton.style.display = 'inline-block';
             deleteButton.style.display = 'none';
+            updateButton.style.display = 'none';
         }
     }
 
@@ -113,6 +116,10 @@
         start = startDate
         start = endDate
         $('#recordNo').val('')
+        $('#name').val('')
+        $('#phone').val('')
+        $('#message').val('')
+
         checkRecord()
         $('#details').modal('show')
 
@@ -219,11 +226,12 @@
                     },
                     success: function (response) {
                         console.log(response)
+                        show(response.start, response.end)
                         $('#name').val(response.title)
                         $('#phone').val(response.phone)
                         $('#message').val(response.message)
                         $('.modal-title').html('Detalii rezervare')
-                        show(response.start, response.end)
+
                         $('#recordNo').val(response.id)
                         checkRecord();
 

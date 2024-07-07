@@ -14,7 +14,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Fa o rezervare</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hide()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -24,15 +24,40 @@
                     <label for="usr">Name:</label>
                     <input type="text" class="form-control" id="name">
                 </div>
+                <div class="form-group">
+                    <label for="usr">Telefon:</label>
+                    <input type="text" class="form-control" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Mesaj:</label>
+                    <textarea name="message" class="form-control" id="message"></textarea>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="onSubmit()">Save changes</button>
+                <button type="button" class="btn btn-primary" id="save" onclick="onSubmit()">Save changes</button>
+                <button type="button" class="btn btn-danger" id="delete" onclick="onDelete()">Delete</button>
+                <button type="button" class="btn btn-info" id="update" onclick="onUpdate()">Update</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hide()">Close</button>
+                <input type="hidden" name="id" id="recordNo">
             </div>
         </div>
     </div>
 </div>
 <script>
+    function checkRecord() {
+        const recordNo = document.getElementById('recordNo').value;
+        const saveButton = document.getElementById('save');
+        const deleteButton = document.getElementById('delete');
+
+        if (parseInt(recordNo) > 0) {
+            saveButton.style.display = 'none';
+            deleteButton.style.display = 'inline-block';
+        } else {
+            saveButton.style.display = 'inline-block';
+            deleteButton.style.display = 'none';
+        }
+    }
+
     let start = null
     let end = null
     let calendar = null
@@ -45,12 +70,50 @@
 
     function onSubmit() {
         const name = $('#name').val()
-        doPost(name, start, end)
+        const phone = $('#phone').val()
+        const message = $('#message').val()
+        doPost(name, phone, message, start, end)
+    }
+
+    function onDelete() {
+        var deleteMsg = confirm("Do you really want to delete?");
+        if (deleteMsg) {
+            const recordNo = $('#recordNo').val()
+            doDelete(recordNo)
+        }
+    }
+
+    function onUpdate() {
+        const recordNo = $('#recordNo').val()
+        const name = $('#name').val()
+        const phone = $('#phone').val()
+        const message = $('#message').val()
+        doUpdate(name, phone, message, start, end, recordNo)
+    }
+
+    function doDelete(recordNo) {
+        $.ajax({
+            type: "POST",
+            url: SITE_URL + '/rezervari',
+            data: {
+                id: recordNo,
+                type: 'delete'
+            },
+            success: function (response) {
+                $('#recordNo').val('')
+                checkRecord();
+                calendar.fullCalendar('removeEvents', recordNo);
+                displayMessage("Event Deleted Successfully");
+                hide()
+            }
+        });
     }
 
     function show(startDate, endDate) {
         start = startDate
         start = endDate
+        $('#recordNo').val('')
+        checkRecord()
         $('#details').modal('show')
 
     }
@@ -60,14 +123,36 @@
 
     }
 
-    function doPost(name, startDate, endDate) {
+    function doPost(name, phone, message, startDate, endDate) {
         $.ajax({
             url: SITE_URL + "/rezervari",
             data: {
                 title: name,
+                phone: phone,
+                message: message,
                 start: startDate._i,
                 end: startDate._i,
                 type: 'add'
+            },
+            type: "POST",
+            success: function () {
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error("Error occurred: " + error);
+            }
+        });
+    }
+
+    function doUpdate(name, phone, message, startDate, endDate, recordNo) {
+        $.ajax({
+            url: SITE_URL + "/rezervari",
+            data: {
+                title: name,
+                phone: phone,
+                message: message,
+                id: recordNo,
+                type: 'update'
             },
             type: "POST",
             success: function () {
@@ -99,6 +184,8 @@
             selectable: true,
             selectHelper: true,
             select: function (start, end, allDay) {
+                $('.modal-title').html('Fa o rezervare')
+
                 show(start, end)
             },
             eventDrop: function (event, delta) {
@@ -121,21 +208,30 @@
                 });
             },
             eventClick: function (event) {
-                var deleteMsg = confirm("Do you really want to delete?");
-                if (deleteMsg) {
-                    $.ajax({
-                        type: "POST",
-                        url: SITE_URL + '/rezervari',
-                        data: {
-                            id: event.id,
-                            type: 'delete'
-                        },
-                        success: function (response) {
-                            calendar.fullCalendar('removeEvents', event.id);
-                            displayMessage("Event Deleted Successfully");
-                        }
-                    });
-                }
+                // var deleteMsg = confirm("Do you really want to delete?");
+                // if (deleteMsg) {
+                $.ajax({
+                    type: "POST",
+                    url: SITE_URL + '/rezervari',
+                    data: {
+                        id: event.id,
+                        type: 'view'
+                    },
+                    success: function (response) {
+                        console.log(response)
+                        $('#name').val(response.title)
+                        $('#phone').val(response.phone)
+                        $('#message').val(response.message)
+                        $('.modal-title').html('Detalii rezervare')
+                        show(response.start, response.end)
+                        $('#recordNo').val(response.id)
+                        checkRecord();
+
+                        // calendar.fullCalendar('removeEvents', event.id);
+                        // displayMessage("Event Deleted Successfully");
+                    }
+                });
+                // }
             }
 
         });

@@ -10,6 +10,15 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'start', 'end'
+        'title',
+        'start',
+        'end',
+        'phone',
+        'message'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

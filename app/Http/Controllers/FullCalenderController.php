@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class FullCalenderController extends Controller
 {
+
     /**
-     * Write code on Method
-     *
-     * @return response()
+     * @param Request $request
+     * @return Application|Factory|View|\Illuminate\Foundation\Application|JsonResponse
      */
     public function index(Request $request)
     {
@@ -46,9 +51,17 @@ class FullCalenderController extends Controller
 
                 $event = Event::create([
                     'title' => $request->title,
+                    'phone' => $request->phone,
+                    'message' => $request->message,
                     'start' => $dateTime->format('Y-m-d H:i:s'),
                     'end' => $dateTime->format('Y-m-d H:i:s'),
                 ]);
+                $event->user_id = Auth::id();
+                $event->save();
+                $text = "Avem o rezervare pe date de\n"
+                    . $dateTime->format('Y-m-d') . "\n"
+                    . "Telefon: " . $request->phone . "\n"
+                    . "Detalii: " . $request->message;;
                 $response = Http::withBasicAuth('7f10adec', 'D8ivM2bR1Szc4g9l')
                     ->withHeaders([
                         'Content-Type' => 'application/json',
@@ -56,9 +69,9 @@ class FullCalenderController extends Controller
                     ])
                     ->post('https://messages-sandbox.nexmo.com/v1/messages', [
                         'from' => '14157386102',
-                        'to' => '40722562596',
+                        'to' => '40740276810',
                         'message_type' => 'text',
-                        'text' => 'Avem o rezervare',
+                        'text' => $text,
                         'channel' => 'whatsapp'
                     ]);
                 return response()->json($event);
@@ -66,8 +79,9 @@ class FullCalenderController extends Controller
             case 'update':
                 $event = Event::find($request->id)->update([
                     'title' => $request->title,
-                    'start' => $request->start,
-                    'end' => $request->end,
+                    'phone' => $request->phone,
+                    'message' => $request->message,
+
                 ]);
 
                 return response()->json($event);;
@@ -76,9 +90,14 @@ class FullCalenderController extends Controller
                 $event = Event::find($request->id)->delete();
 
                 return response()->json($event);
+            case 'view':
+                $event = Event::find($request->id);
+
+                return response()->json($event);
+
 
             default:
-                # code...
+
                 break;
         }
     }

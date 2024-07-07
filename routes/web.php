@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-//Route::middleware(['auth'])->group(function () {
-//    Route::get('/rezervari', function () {
-//        return view('rezervari');
-//    })->name('rezervari');
-//});
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 Route::get('rezervari', [FullCalenderController::class, 'index'])->name('rezervari');
 Route::post('rezervari', [FullCalenderController::class, 'ajax']);
 

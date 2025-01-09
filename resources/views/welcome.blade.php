@@ -1,36 +1,23 @@
 @include('base')
-<div class="container mt-12">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title text-center">The Magic House</h5>
-            <p class="card-text text-center">
-                🌟 Cauți locul ideal unde să celebrezi o zi specială pentru copilul sau nepotul tău? 🎉
-            </p>
-            <p class="card-text">
-                🏠 Hai la The Magic House! Un spațiu de joacă plin de jucării, dedicat exclusiv evenimentelor și
-                grupurilor de copii, deschis în fiecare zi, de luni până duminică. Descoperă ofertele noastre
-                personalizate! 🎈
-            </p>
-            <p class="card-text">
-                📞 Apel, WhatsApp, SMS, sau Messenger la <strong>0743 106 305</strong> - Contactează-ne acum pentru
-                detalii și organizare! Vom răspunde prompt pentru a transforma dorința în realitate! 💌
-            </p>
-            <p class="card-text">
-                📍 Adresa noastră: B-dul Muncii, Nr. 18, Corp B, Parter, Clădirea Apia, Cluj-Napoca
-            </p>
-            <p class="card-text text-center">
-                <span class="badge badge-primary">#activitatipentrucopii</span>
-                <span class="badge badge-primary">#ClujNapoca</span>
-                <span class="badge badge-primary">#kidsparty</span>
-                <span class="badge badge-primary">#EvenimenteCopii</span>
-                <span class="badge badge-primary">#PetreceriCopiiCluj</span>
-                <span class="badge badge-primary">#aniversare</span>
-                <span class="badge badge-primary">#activitatiCopiiCluj</span>
-                <span class="badge badge-primary">#clujkidfriendly</span>
-                <span class="badge badge-primary">#evenimenteCopiiCluj</span>
-            </p>
+<div class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img src="{{ asset('storage/images/logo/12.jpg') }}" alt="Instructor și elev" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-primary">Despre Noi</h2>
+            <p><strong>Școala CIO vă oferă:</strong></p>
+            <ul>
+                <li>- cursuri teoretice de legislație rutieră</li>
+                <li>- cursuri practice obținere permis categoria B</li>
+                <li>- cursuri practice de perfecționare pentru deținătorii de permis de conducere</li>
+                <li>- cursurile teoretice se desfășoară la sediul școlii de pe strada București nr.74
+                    (lângă baza sportivă Farmec), unde cursanții au posibilitatea simulării examenului teoretic
+                    pe calculatoare cu software asemănătoare celor de la poliție. Cursanții au acces gratuit la
+                    aceste calculatoare pe toată durata școlarizării.
+                </li>
+            </ul>
         </div>
     </div>
-</div>
-@include('partial.footer')
+</div>@include('partial.footer')
 

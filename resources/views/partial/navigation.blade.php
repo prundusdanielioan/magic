@@ -1,25 +1,24 @@
-<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
+<nav class="navbar navbar-icon-top navbar-expand-lg">
+    <a class="navbar-brand" href="#">
+        <img src="{{ asset('storage/images/logo/cio_logo.png') }}"
+             alt="CIO" width="40" height="40" class="d-inline-block align-text-top"
+             style="height: 40px; width: 150px; margin-right: 10px;">
+    </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active me-4">
                 <a class="nav-link" href="/">
                     <i class="fa fa-home "></i>
-                    Home
+                    Acasa
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
-            @auth
             <li class="nav-item me-4">
                 <a class="nav-link" href="{{ route('rezervari') }}">
                     <i class="fa fa-envelope-o">
                         <span class="badge badge-danger"></span>
                     </i>
-                    Rezervari
+                   Rezervari
                 </a>
             </li>
 
@@ -31,30 +30,7 @@
                         Galerie
                     </a>
                 </li>
-            @endauth
-            @if (Auth::check())
-                <li class="nav-item me-4">
-                    <a class="nav-link" href="{{ route('logout') }}">
-                        <i class="fa fa-sign-out"></i>
-                        Logout
-                    </a>
 
-                </li>
-            @else
-                <li class="nav-item me-4">
-                    <a class="nav-link" href="{{ route('register') }}">
-                        <i class="fa fa-user-circle-o"></i>
-                        Register
-                    </a>
-                </li>
-
-                <li class="nav-item me-4">
-                    <a class="nav-link" href="{{ route('login') }}">
-                        <i class="fa fa-sign-in"></i>
-                        My Login
-                    </a>
-                </li>
-            @endif
 
         </ul>
     </div>

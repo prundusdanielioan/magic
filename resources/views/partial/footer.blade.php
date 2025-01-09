@@ -11,12 +11,6 @@
                 <div class="footer_copyright">
                     <p>© 2024</p>
                 </div>
-                <div class="footer_profile">
-                    <ul>
-                        <li><a href="https://www.facebook.com/TheMagicHouseClujNapoca/" target="_blank"><i
-                                    class="fa fa-facebook"></i></a></li>
-                    </ul>
-                </div>
             </div><!--- END COL -->
         </div><!--- END ROW -->
     </div><!--- END CONTAINER -->

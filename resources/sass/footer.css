@@ -3,7 +3,7 @@ body {
 }
 
 .footer {
-    background: #232a34;
+    /*background: #232a34;*/
     padding-bottom: 50px;
     padding-top: 80px;
 }
@@ -22,7 +22,7 @@ body {
 }
 
 .footer_menu ul li a {
-    color: #fff;
+    color: black;
     padding: 0 10px;
     -webkit-transition: 0.3s;
     transition: 0.3s;

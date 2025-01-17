@@ -28,16 +28,6 @@
                 </a>
             </li>
 
-            @auth
-                <li class="nav-item me-4">
-                    <a class="nav-link" href="{{ route('rezervari') }}">
-                        <i class="fa fa-envelope-o">
-                            <span class="badge badge-danger"></span>
-                        </i>
-                        Rezervari
-                    </a>
-                </li>
-            @endauth
 
             @if (Auth::check())
                 <li class="nav-item me-4">
@@ -57,9 +47,17 @@
                 </li>
             @else
                 <li class="nav-item me-4">
+                    <a class="nav-link" href="{{ route('rezervari') }}">
+                        <i class="fa fa-envelope-o">
+                            <span class="badge badge-danger"></span>
+                        </i>
+                        Rezervari
+                    </a>
+                </li>
+                <li class="nav-item me-4">
                     <a class="nav-link" href="{{ route('login') }}">
                         <i class="fa fa-sign-in"></i>
-                        Login
+                        My Login
                     </a>
                 </li>
             @endif

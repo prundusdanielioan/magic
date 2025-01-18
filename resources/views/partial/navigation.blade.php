@@ -57,7 +57,7 @@
                 <li class="nav-item me-4">
                     <a class="nav-link" href="{{ route('login') }}">
                         <i class="fa fa-sign-in"></i>
-                        My Login
+                        Login
                     </a>
                 </li>
             @endif

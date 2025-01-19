@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="usr">Ora:</label>
-                    <input type="text" class="form-control" id="hour">
+                    <input type="time" class="form-control" id="hour">
                 </div>
                 <div class="form-group">
                     <label for="usr">Mesaj:</label>
@@ -239,6 +239,7 @@
                         $('#name').val(response.title)
                         $('#phone').val(response.phone)
                         $('#message').val(response.message)
+                        $('#hour').val(response.hour)
                         $('.modal-title').html('Detalii rezervare')
 
                         $('#recordNo').val(response.id)

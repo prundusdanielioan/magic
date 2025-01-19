@@ -10,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 
 class FullCalenderController extends Controller
 {
@@ -53,27 +52,13 @@ class FullCalenderController extends Controller
                     'title' => $request->title,
                     'phone' => $request->phone,
                     'message' => $request->message,
+                    'hour' => $request->hour,
                     'start' => $dateTime->format('Y-m-d H:i:s'),
                     'end' => $dateTime->format('Y-m-d H:i:s'),
                 ]);
                 $event->user_id = Auth::id();
                 $event->save();
-                $text = "Avem o rezervare pe date de\n"
-                    . $dateTime->format('Y-m-d') . "\n"
-                    . "Telefon: " . $request->phone . "\n"
-                    . "Detalii: " . $request->message;;
-                $response = Http::withBasicAuth('7f10adec', 'D8ivM2bR1Szc4g9l')
-                    ->withHeaders([
-                        'Content-Type' => 'application/json',
-                        'Accept' => 'application/json'
-                    ])
-                    ->post('https://messages-sandbox.nexmo.com/v1/messages', [
-                        'from' => '14157386102',
-                        'to' => '40740276810',
-                        'message_type' => 'text',
-                        'text' => $text,
-                        'channel' => 'whatsapp'
-                    ]);
+
                 return response()->json($event);
 
             case 'update':
@@ -81,10 +66,11 @@ class FullCalenderController extends Controller
                     'title' => $request->title,
                     'phone' => $request->phone,
                     'message' => $request->message,
+                    'hour' => $request->hour,
 
                 ]);
 
-                return response()->json($event);;
+                return response()->json($event);
 
             case 'delete':
                 $event = Event::find($request->id)->delete();
@@ -92,7 +78,6 @@ class FullCalenderController extends Controller
                 return response()->json($event);
             case 'view':
                 $event = Event::find($request->id);
-
                 return response()->json($event);
 
 

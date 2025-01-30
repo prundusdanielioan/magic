@@ -8,7 +8,7 @@ class ListRecords extends Controller
 {
     public function render()
     {
-        $events = Event::all();
+        $events = Event::orderBy('hour', 'asc')->get();
         return view('list_records', compact('events'));
     }
 }

@@ -15,12 +15,9 @@
                         <tr>
                             <th>ID</th>
                             <th>Title</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
                             <th>Phone</th>
                             <th>Message</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
+                            <th>Hour</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -28,12 +25,9 @@
                             <tr>
                                 <td>{{ $event->id }}</td>
                                 <td>{{ $event->title }}</td>
-                                <td>{{ $event->start }}</td>
-                                <td>{{ $event->end }}</td>
                                 <td>{{ $event->phone }}</td>
                                 <td>{{ $event->message }}</td>
-                                <td>{{ Carbon::parse($event->created_at)->format('Y-m-d H:i') }}</td>
-                                <td>{{ Carbon::parse($event->updated_at)->format('Y-m-d H:i') }}</td>
+                                <td>{{ $event->hour }}</td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -14,6 +14,7 @@ class Event extends Model
         'start',
         'end',
         'phone',
+        'hour',
         'message'
     ];
 

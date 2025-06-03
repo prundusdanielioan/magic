@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RezervareTrimisa;
 use App\Models\Event;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -10,7 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class FullCalenderController extends Controller
 {
@@ -21,19 +22,15 @@ class FullCalenderController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request->ajax()) {
-
             $data = Event::whereDate('start', '>=', $request->start)
                 ->whereDate('end', '<=', $request->end)
                 ->get(['id', 'title', 'start', 'end']);
 
             return response()->json($data);
             return view('rezervari', $data);
-
         }
         return view('rezervari');
-
     }
 
     /**
@@ -43,7 +40,6 @@ class FullCalenderController extends Controller
      */
     public function ajax(Request $request)
     {
-
         switch ($request->type) {
             case 'add':
                 $dateTime = Carbon::createFromTimestampMs($request->start);
@@ -53,27 +49,19 @@ class FullCalenderController extends Controller
                     'title' => $request->title,
                     'phone' => $request->phone,
                     'message' => $request->message,
+                    'hour' => $request->hour,
                     'start' => $dateTime->format('Y-m-d H:i:s'),
                     'end' => $dateTime->format('Y-m-d H:i:s'),
                 ]);
                 $event->user_id = Auth::id();
                 $event->save();
-                $text = "Avem o rezervare pe date de\n"
-                    . $dateTime->format('Y-m-d') . "\n"
-                    . "Telefon: " . $request->phone . "\n"
-                    . "Detalii: " . $request->message;;
-                $response = Http::withBasicAuth('7f10adec', 'D8ivM2bR1Szc4g9l')
-                    ->withHeaders([
-                        'Content-Type' => 'application/json',
-                        'Accept' => 'application/json'
-                    ])
-                    ->post('https://messages-sandbox.nexmo.com/v1/messages', [
-                        'from' => '14157386102',
-                        'to' => '40740276810',
-                        'message_type' => 'text',
-                        'text' => $text,
-                        'channel' => 'whatsapp'
-                    ]);
+                $emailData = [
+                    'data' => $dateTime->format('Y-m-d'),
+                    'telefon' => $request->phone,
+                    'mesaj' => $request->message,
+                ];
+                Mail::to('prundusdanielioan@gmail.com')->send(new RezervareTrimisa($emailData));
+
                 return response()->json($event);
 
             case 'update':

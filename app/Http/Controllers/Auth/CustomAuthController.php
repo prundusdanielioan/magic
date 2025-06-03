@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class CustomAuthController extends Controller
@@ -27,7 +27,7 @@ class CustomAuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('rezervari')
+            return redirect()->intended('list')
                 ->withSuccess('Signed in');
         }
         $validator['emailPassword'] = 'Email address or password is incorrect.';
@@ -57,6 +57,12 @@ class CustomAuthController extends Controller
 
     public function create(array $data)
     {
+        print_r([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password'])
+        ]);
+        die();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

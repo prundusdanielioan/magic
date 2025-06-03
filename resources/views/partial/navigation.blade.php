@@ -13,23 +13,47 @@
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item me-4">
-                <a class="nav-link" href="{{ route('rezervari') }}">
-                    <i class="fa fa-envelope-o">
-                        <span class="badge badge-danger"></span>
-                    </i>
-                   Rezervari
-                </a>
-            </li>
-
+            @if (Auth::check())
                 <li class="nav-item me-4">
-                    <a class="nav-link" href="{{ route('gallery') }}">
+                    <a class="nav-link" href="{{ route('list') }}">
                         <i class="fa fa-file-image-o">
                             <span class="badge badge-danger"></span>
                         </i>
-                        Galerie
+                        Lista rezervari
                     </a>
                 </li>
+
+                <li class="nav-item me-4">
+                    <a class="nav-link" href="{{ route('logout') }}">
+                        <i class="fa fa-sign-out"></i>
+                        Logout
+                    </a>
+                </li>
+            @else
+                <li class="nav-item me-4">
+                    <a class="nav-link" href="{{ route('rezervari') }}">
+                        <i class="fa fa-envelope-o">
+                            <span class="badge badge-danger"></span>
+                        </i>
+                        Rezervari
+                    </a>
+                </li>
+                <li class="nav-item me-4">
+                    <a class="nav-link" href="{{ route('login') }}">
+                        <i class="fa fa-sign-in"></i>
+                        Login
+                    </a>
+                </li>
+            @endif
+
+            <li class="nav-item me-4">
+                <a class="nav-link" href="{{ route('gallery') }}">
+                    <i class="fa fa-file-image-o">
+                        <span class="badge badge-danger"></span>
+                    </i>
+                    Galerie
+                </a>
+            </li>
 
 
         </ul>

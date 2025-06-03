@@ -29,6 +29,10 @@
                     <input type="text" class="form-control" id="phone">
                 </div>
                 <div class="form-group">
+                    <label for="usr">Ora:</label>
+                    <input type="time" class="form-control" id="hour">
+                </div>
+                <div class="form-group">
                     <label for="usr">Mesaj:</label>
                     <textarea name="message" class="form-control" id="message"></textarea>
                 </div>
@@ -75,7 +79,8 @@
         const name = $('#name').val()
         const phone = $('#phone').val()
         const message = $('#message').val()
-        doPost(name, phone, message, start, end)
+        const hour = $('#hour').val()
+        doPost(name, phone, message, hour, start, end)
     }
 
     function onDelete() {
@@ -91,7 +96,8 @@
         const name = $('#name').val()
         const phone = $('#phone').val()
         const message = $('#message').val()
-        doUpdate(name, phone, message, start, end, recordNo)
+        const hour = $('#hour').val()
+        doUpdate(name, phone, message, hour, start, end, recordNo)
     }
 
     function doDelete(recordNo) {
@@ -130,13 +136,14 @@
 
     }
 
-    function doPost(name, phone, message, startDate, endDate) {
+    function doPost(name, phone, message, hour, startDate, endDate) {
         $.ajax({
             url: SITE_URL + "/rezervari",
             data: {
                 title: name,
                 phone: phone,
                 message: message,
+                hour: hour,
                 start: startDate._i,
                 end: startDate._i,
                 type: 'add'
@@ -151,13 +158,15 @@
         });
     }
 
-    function doUpdate(name, phone, message, startDate, endDate, recordNo) {
+    function doUpdate(name, phone, message, hour, startDate, endDate, recordNo) {
         $.ajax({
             url: SITE_URL + "/rezervari",
             data: {
                 title: name,
                 phone: phone,
                 message: message,
+                hour: hour,
+
                 id: recordNo,
                 type: 'update'
             },
@@ -230,6 +239,7 @@
                         $('#name').val(response.title)
                         $('#phone').val(response.phone)
                         $('#message').val(response.message)
+                        $('#hour').val(response.hour)
                         $('.modal-title').html('Detalii rezervare')
 
                         $('#recordNo').val(response.id)
